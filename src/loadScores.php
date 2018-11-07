@@ -1,4 +1,11 @@
 <?php
+	error_reporting(0);
+	
+	set_include_path($_SERVER['DOCUMENT_ROOT']  . "/" . "modules");
+	
+	// Require modules
+	require_once( 'Constants.class.php');
+
 	$range = $_POST['range'];
 	
 	if($range == "day") {
@@ -17,7 +24,7 @@
 		$whereClause = "";
 	}
 		
-	$connect = mysql_connect("localhost","","");
+	$connect = mysql_connect(Constants::DB_HOST, Constants::DB_USER, Constants::DB_PASSWORD);
 	mysql_select_db("hallaby_daxpy");
 	
 	$str = "SELECT * FROM high_scores " . $whereClause . " ORDER BY score DESC, score_date DESC LIMIT 10";
