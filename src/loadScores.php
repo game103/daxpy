@@ -24,14 +24,14 @@
 		$whereClause = "";
 	}
 		
-	$connect = mysql_connect(Constants::DB_HOST, Constants::DB_USER, Constants::DB_PASSWORD);
-	mysql_select_db("hallaby_daxpy");
+	$connect = mysqli_connect(Constants::DB_HOST, Constants::DB_USER, Constants::DB_PASSWORD);
+	mysqli_select_db($connect, "hallaby_daxpy");
 	
 	$str = "SELECT * FROM high_scores " . $whereClause . " ORDER BY score DESC, score_date DESC LIMIT 10";
-	$query = mysql_query($str);
+	$query = mysqli_query($connect, $str);
 	
 	$i = 1;
-	while($rows = mysql_fetch_array($query)):
+	while($rows = mysql_fetch_array($query, MYSQLI_NUM)):
 		
 		$username = $rows['username'];
 		$score = $rows['score'];
@@ -47,5 +47,5 @@
 		$i++;
 	}
 	
-	mysql_close();
+	mysql_close($connect);
 ?>
