@@ -31,7 +31,7 @@
 	$query = mysqli_query($connect, $str);
 	
 	$i = 1;
-	while($rows = mysqli_fetch_array($query, MYSQLI_NUM)):
+	while($rows = mysql_fetch_array($query)):
 		
 		$username = $rows['username'];
 		$score = $rows['score'];
@@ -47,5 +47,5 @@
 		$i++;
 	}
 	
-	mysqli_close($connect);
+	mysql_close($connect);
 ?>
