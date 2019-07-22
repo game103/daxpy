@@ -47,5 +47,5 @@
 		$i++;
 	}
 	
-	mysql_close($connect);
+	mysqli_close($connect);
 ?>
